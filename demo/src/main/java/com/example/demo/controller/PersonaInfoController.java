@@ -79,39 +79,39 @@ public class PersonaInfoController {
     	List<String> ret = new ArrayList<>();
     	
     	String integerRegExp = "([0-9])";
-    	String onlyLetters = "([a-z][A-Z])";
-    	String addressRegExp = "([a-z][A-Z] )";
+    	String onlyLettersRegExp = "([A-Za-z])";
+    	String addressRegExp = "([A-Za-z] )";
     	String hairColourRegExp="(black|yellow|brown|red|white)";
     	
     	if(persona!=null) {
     		
-    		//ID
-    		if(!Pattern.compile(integerRegExp).matcher(persona.getId()).matches()) {
+    		//ID    		
+    		if(persona.getId()!=null && !Pattern.matches(integerRegExp,persona.getId())) {
     			ret.add("ERROR: el atributo ID debe contener solo numeros");
     		}
     		
     		//NAME
-    		if(!Pattern.compile(onlyLetters).matcher(persona.getName()).matches()) {
+    		if(!Pattern.matches(onlyLettersRegExp,persona.getName())) {
     			ret.add("ERROR: el atributo NAME debe contener solo letras");
     		}
     		
     		//LAST NAME
-    		if(!Pattern.compile(onlyLetters).matcher(persona.getLastName()).matches()) {
+    		if(!Pattern.matches(onlyLettersRegExp,persona.getLastName())) {
     			ret.add("ERROR: el atributo LAST_NAME debe contener solo letras");
     		}
     		
     		//ADDRESS
-    		if(!Pattern.compile(addressRegExp).matcher(persona.getAddress()).matches()) {
+    		if(!Pattern.matches(addressRegExp,persona.getAddress())) {
     			ret.add("ERROR: el atributo ADDRESS debe contener solo letras y espacios");
     		}
     		
     		//PHONE NUMBER
-    		if(!Pattern.compile(integerRegExp).matcher(persona.getPhoneNumber()).matches()) {
+    		if(!Pattern.matches(integerRegExp,persona.getPhoneNumber())) {
     			ret.add("ERROR: el atributo PHONE_NUMBER debe contener solo numeros");
     		}
     		
     		//HAIR COLOR    		
-    		if(!Pattern.compile(hairColourRegExp).matcher(persona.getHairColour().toLowerCase()).matches()) {
+    		if(!Pattern.matches(hairColourRegExp,persona.getHairColour().toLowerCase())) {
     			ret.add("ERROR: el atributo HAIR_COLOUR debe ser uno de los siguientes valores: BLACK, RED, YELLOW, BROWN, WHITE ");
     		}   		
     		
