@@ -56,6 +56,12 @@ public class PersonaInfo {
     }
     public void setHairColour(String hairColour) {
         this.hairColour = hairColour;
-    }    
+    }
+	@Override
+	public String toString() {
+		return "PersonaInfo [id=" + id + ", name=" + name + ", lastName=" + lastName + ", address=" + address
+				+ ", phoneNumber=" + phoneNumber + ", hairColour=" + hairColour + "]";
+	}    
+      
     
 }
