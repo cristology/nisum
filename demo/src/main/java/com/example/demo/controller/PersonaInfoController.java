@@ -38,8 +38,8 @@ public class PersonaInfoController {
 			return validation;
 		}
 		
-		personaRepository.save(PersonaTransformer.convertModelToEntity(persona));
-		return "Persona guardada: " + persona.getId();
+		PersonaInfo personaSaved = personaRepository.save(PersonaTransformer.convertModelToEntity(persona));
+		return "Persona guardada: " + personaSaved.getId();
     }	
     
    
@@ -78,15 +78,15 @@ public class PersonaInfoController {
     	
     	List<String> ret = new ArrayList<>();
     	
-    	String integerRegExp = "([0-9])";
-    	String onlyLettersRegExp = "([A-Za-z])";
-    	String addressRegExp = "([A-Za-z] )";
+    	String onlyNumbersRegExp = "^[0-9]*$";
+    	String onlyLettersRegExp = "^[A-Za-z]*$";
+    	String addressRegExp = "^[A-Za-z0-9\\s]*$";
     	String hairColourRegExp="(black|yellow|brown|red|white)";
     	
     	if(persona!=null) {
     		
     		//ID    		
-    		if(persona.getId()!=null && !Pattern.matches(integerRegExp,persona.getId())) {
+    		if(persona.getId()!=null && !Pattern.matches(onlyNumbersRegExp,persona.getId())) {
     			ret.add("ERROR: el atributo ID debe contener solo numeros");
     		}
     		
@@ -106,7 +106,7 @@ public class PersonaInfoController {
     		}
     		
     		//PHONE NUMBER
-    		if(!Pattern.matches(integerRegExp,persona.getPhoneNumber())) {
+    		if(!Pattern.matches(onlyNumbersRegExp,persona.getPhoneNumber())) {
     			ret.add("ERROR: el atributo PHONE_NUMBER debe contener solo numeros");
     		}
     		
