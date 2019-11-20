@@ -10,4 +10,6 @@ import java.io.Serializable;
 @Repository("personaRepository")
 public interface PersonaRepository extends JpaRepository<PersonaInfo, Serializable>{
 
+	public abstract PersonaInfo getById(int id);
+
 }
