@@ -18,6 +18,8 @@ import com.example.demo.entity.PersonaInfo;
 import com.example.demo.model.PersonaModel;
 import com.example.demo.repository.PersonaRepository;
 
+import java.util.regex.*;
+
 @Controller
 @RequestMapping("/persona")
 public class PersonaInfoController {
@@ -74,18 +76,38 @@ public class PersonaInfoController {
     	
     	if(persona!=null) {
     		
-    		try {
-    			Integer.parseInt(persona.getId());
-    		}catch(NumberFormatException nfe) {
+    		//ID
+    		if(!Pattern.compile("expresion").matcher(persona.getId()).matches()) {
     			ret.add("ERROR: el atributo ID debe contener solo numeros");
-    		}    		
-    		
-    		try {
-    			Integer.parseInt(persona.getPhoneNumber());
-    		}catch(NumberFormatException nfe) {
-    			ret.add("ERROR: el atributo PHONE_NUMBER debe contener solo numeros");
     		}
     		
+    		//NAME
+    		if(!Pattern.compile("expresion").matcher(persona.getName()).matches()) {
+    			ret.add("ERROR: ");
+    		}
+    		
+    		//LAST NAME
+    		if(!Pattern.compile("expresion").matcher(persona.getLastName()).matches()) {
+    			ret.add("ERROR: ");
+    		}
+    		
+    		//ADDRESS
+    		if(!Pattern.compile("expresion").matcher(persona.getAddress()).matches()) {
+    			ret.add("ERROR: ");
+    		}
+    		
+    		//PHONE NUMBER
+    		if(!Pattern.compile("expresion").matcher(persona.getPhoneNumber()).matches()) {
+    			ret.add("ERROR: ");
+    		}
+    		
+    		//HAIR COLOR
+    		/*
+    		if(!Pattern.compile("expresion").matcher(persona.getHairColour()).matches()) {
+    			ret.add("ERROR: ");
+    		}
+    		*/
+    		    		
     		if(!"black".equalsIgnoreCase(persona.getHairColour())
 				&& !"red".equalsIgnoreCase(persona.getHairColour())
 				&& !"yellow".equalsIgnoreCase(persona.getHairColour())
