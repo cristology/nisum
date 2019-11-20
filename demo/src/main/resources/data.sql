@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS persona;
+ 
+CREATE TABLE persona(
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  last_name VARCHAR(20) NOT NULL,
+  address VARCHAR(250) DEFAULT NULL,
+  phone_number INT DEFAULT NULL,
+  hair_colour VARCHAR(20) DEFAULT NULL
+);
+ 
